@@ -15,6 +15,8 @@ node {
    checkout scm
    
    def app
+   
+   stage 'build'
    app = docker.build("minnamgoong/hellodocker")
 
    // Get the maven tool.
@@ -22,7 +24,8 @@ node {
    // **       in the global configuration.
    def mvnHome = tool 'mvn'
 
-   stage 'build'
+   stage 'run'
+   app.run()
    
    /**
    // set the version of the build artifact to the Jenkins BUILD_NUMBER so you can
@@ -32,8 +35,8 @@ node {
    sh "${mvnHome}/bin/mvn compile"
    **/
    
-   sh "javac HelloWorld.java"
-   sh "jar cfm HelloWorld.jar manifest.txt HelloWorld.class"
+   /** sh "javac HelloWorld.java"
+   sh "jar cfm HelloWorld.jar manifest.txt HelloWorld.class" **/
 
    /**
    stage 'test'
