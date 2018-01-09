@@ -7,8 +7,15 @@ node {
    stage 'checkout'
 
    // Get some code from a GitHub repository
+   /**
    git url: 'https://github.com/minnamgoong/hello-docker'
    sh 'git clean -fdx; sleep 4;'
+   **/
+   
+   checkout scm
+   
+   def app
+   app = docker.build("minnamgoong/hellodocker")
 
    // Get the maven tool.
    // ** NOTE: This 'mvn' maven tool must be configured
