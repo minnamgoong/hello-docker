@@ -20,7 +20,7 @@ node {
    // map artifacts to Jenkins builds
    sh "${mvnHome}/bin/mvn versions:set -DnewVersion=${env.BUILD_NUMBER}"
    // sh "${mvnHome}/bin/mvn package"
-   sh "${mvnHome}/bin/mvn compile
+   sh "${mvnHome}/bin/mvn compile"
 
    /**
    stage 'test'
