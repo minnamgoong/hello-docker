@@ -7,7 +7,7 @@ node {
    stage 'checkout'
 
    // Get some code from a GitHub repository
-   git url: 'https://github.com/minnamgoong/maven-hello-world'
+   git url: 'https://github.com/minnamgoong/hello-docker'
    sh 'git clean -fdx; sleep 4;'
 
    // Get the maven tool.
@@ -16,11 +16,17 @@ node {
    def mvnHome = tool 'mvn'
 
    stage 'build'
+   
+   /**
    // set the version of the build artifact to the Jenkins BUILD_NUMBER so you can
    // map artifacts to Jenkins builds
    sh "${mvnHome}/bin/mvn versions:set -DnewVersion=${env.BUILD_NUMBER}"
    // sh "${mvnHome}/bin/mvn package"
    sh "${mvnHome}/bin/mvn compile"
+   **/
+   
+   sh "javac HelloWorld.java"
+   sh "jar cfm HelloWorld.jar manifest.txt HelloWorld.class"
 
    /**
    stage 'test'
