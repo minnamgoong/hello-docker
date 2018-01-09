@@ -20,7 +20,7 @@ node {
    // map artifacts to Jenkins builds
    sh "${mvnHome}/bin/mvn versions:set -DnewVersion=${env.BUILD_NUMBER}"
    // sh "${mvnHome}/bin/mvn package"
-   sh "${mvnHome}/bin/mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+   sh "${mvnHome}/bin/mvn compile
 
    /**
    stage 'test'
@@ -32,7 +32,7 @@ node {
    **/
 
    stage 'archive'
-   archive 'target/*.jar'
+   //archive 'target/*.jar'
 }
 
 
@@ -43,5 +43,5 @@ node {
    stage 'deploy Production'
    // input 'Proceed?'
    // sh 'echo "write your deploy code here"; sleep 6;'
-   archive 'target/*.jar'
+   //archive 'target/*.jar'
 }
